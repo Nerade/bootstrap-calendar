@@ -144,6 +144,10 @@ if(!String.prototype.formatNum) {
 			// Inside this function 'this' is the calendar instance
 			next();
 		},
+		onBeforeRequest: function(params) {
+			// Inside this function 'this' is the calendar instance
+			return params;
+		},
 		onAfterViewLoad: function(view) {
 			// Inside this function 'this' is the calendar instance
 		},
@@ -959,6 +963,8 @@ if(!String.prototype.formatNum) {
 						var d_from = self.options.position.start;
 						var d_to = self.options.position.end;
 						var params = {from: d_from.getTime(), to: d_to.getTime(), utc_offset_from: d_from.getTimezoneOffset(), utc_offset_to: d_to.getTimezoneOffset()};
+
+						params = self.options.onBeforeRequest.call(self,params)
 
 						if(browser_timezone.length) {
 							params.browser_timezone = browser_timezone;
