@@ -972,6 +972,7 @@ if(!String.prototype.formatNum) {
 						$.ajax({
 							url: buildEventsUrl(source, params),
 							dataType: 'json',
+							encoding:'UTF-8',
 							type: 'GET',
 							async: false,
 							headers: self.options.headers,
